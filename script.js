@@ -1087,6 +1087,7 @@ const languages = [
 
 function categorizeLanguage() {
     const languageInput = document.getElementById("languageInput").value.toLowerCase();
+        console.log("User input:", languageInput);  // Log the input for debuggin
     const language = languages.find(lang => lang.name.toLowerCase() === languageInput);
 
     if (language) {
