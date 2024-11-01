@@ -34,5 +34,7 @@ button:hover {
 #result {
     margin-top: 20px;
     font-weight: bold;
+    color: #000; /* Explicitly set text color */
+    border: 1px solid red; /* Debug border */
+    padding: 10px;
 }
-
