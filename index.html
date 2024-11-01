@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Programming Language Categorizer</title>
     <link rel="stylesheet" href="styles.css">
@@ -9,16 +9,19 @@
 <body>
     <h1>Programming Language Categorizer</h1>
     <div class="container">
-
         <input type="text" id="languageInput" placeholder="Enter a programming language">
         <button onclick="categorizeLanguage()">Categorize</button>
-        <p id="result"></p>
-        
-        <!-- New Buttons for External Links -->
+    </div>
+
+    <!-- Result Paragraph (Moved Outside of Container) -->
+    <p id="result"></p>
+
+    <!-- External Links (Placed in a Separate Div) -->
+    <div>
         <button onclick="window.open('https://www.linkedin.com/pulse/2024-github-program-languages-sebastian-martinez-8hjwe/?trackingId=FsjMPOncTE6adgRUKK%2B7%2Fg%3D%3D', '_blank')">Read Article on Programming Languages</button>
         <button onclick="window.open('https://www.facebook.com/media/set/?set=a.169201694716201&type=3', '_blank')">Sector Technologies Group Portal</button>
     </div>
-    <script src="script.js"></script>
 
+    <script src="script.js"></script>
 </body>
 </html>
