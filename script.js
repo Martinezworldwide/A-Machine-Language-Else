@@ -222,8 +222,8 @@ const languages = [
     type: "High-level",
     companiesUsingIt: "Embarcadero, Microsoft, NASA",
     idePrograms: "RAD Studio, Delphi IDE"
-},
-{
+    },
+  {
     name: "Drupal",
     description: "An open-source content management framework written in PHP, used for websites and applications.",
     creator: "Dries Buytaert (2001)",
