@@ -1,3 +1,22 @@
+function categorizeLanguage() {
+    const languageInput = document.getElementById("languageInput").value;
+    const language = languages.find(lang => lang.name.toLowerCase() === languageInput.toLowerCase());
+
+    if (language) {
+        document.getElementById("result").innerHTML = `
+            <strong>Name:</strong> ${language.name}<br>
+            <strong>Description:</strong> ${language.description}<br>
+            <strong>Creator:</strong> ${language.creator}<br>
+            <strong>Type:</strong> ${language.type}<br>
+            <strong>Companies Using It:</strong> ${language.companiesUsingIt}<br>
+            <strong>IDE/Programs:</strong> ${language.idePrograms}
+        `;
+    } else {
+        document.getElementById("result").innerText = "Language not found in the database.";
+    }
+}
+
+
 const languages = [
     {
         name: "AL",
