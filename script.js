@@ -478,7 +478,7 @@ const languages = [
     type: "CMS",
     companiesUsingIt: "IKEA, Harvard, eBay",
     idePrograms: "JoomDev, PHPStorm"
-}
+},
 {
     name: "Julia",
     description: "A high-level, high-performance programming language for technical computing, combining ease of use with performance.",
