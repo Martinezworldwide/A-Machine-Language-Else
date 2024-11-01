@@ -3,162 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Code Editor</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-        }
-        h1 {
-            margin: 20px 0;
-            color: #333;
-        }
-        .editor-container {
-            width: 90%;
-            max-width: 1400px;
-        }
-        .editor {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        textarea {
-            width: 32%;
-            height: 400px;
-            padding: 15px;
-            margin: 0;
-            resize: vertical;
-            border: 1px solid #ccc;
-            font-family: monospace;
-            font-size: 16px;
-            color: #333;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        textarea:focus {
-            outline: 2px solid #4285f4;
-        }
-        iframe {
-            width: 100%;
-            height: 500px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-        }
-        .buttons {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 10px;
-            justify-content: center;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            background-color: #4285f4;
-            color: white;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #357ae8;
-        }
-        .error {
-            color: #d9534f;
-            font-size: 14px;
-            white-space: pre-wrap;
-            margin-top: 15px;
-            text-align: left;
-            width: 100%;
-            max-width: 1400px;
-            padding: 10px;
-            border: 1px solid #d9534f;
-            border-radius: 5px;
-            background-color: #f8d7da;
-        }
-    </style>
-</head>
+     <title>Programming Language Categorizer</title>
+    <link rel="stylesheet" href="styles.css">
+    </head>
 <body>
-
-    <h1>Online Code Editor</h1>
-
-    <div class="editor-container">
-        <div class="editor">
-            <textarea id="htmlCode" placeholder="Write HTML code here..."></textarea>
-            <textarea id="cssCode" placeholder="Write CSS code here..."></textarea>
-            <textarea id="jsCode" placeholder="Write JavaScript code here..."></textarea>
-        </div>
-
-        <div class="buttons">
-            <button onclick="runCode()">Run Code</button>
-            <button onclick="clearEditors()">Clear All</button>
-        </div>
-
-        <iframe id="output"></iframe>
-        <pre id="errorDisplay" class="error"></pre>
+    <h1>Programming Language Categorizer</h1>
+    <div class="container">
+        <input type="text" id="languageInput" placeholder="Enter a programming language">
+        <button onclick="categorizeLanguage()">Categorize</button>
     </div>
 
-    <!-- Include linting libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/htmlhint/0.11.0/htmlhint.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/csslint/1.0.5/csslint.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/eslint/7.32.0/eslint.min.js"></script>
+    <!-- Result Paragraph (Moved Outside of Container) -->
+    <p id="result"></p>
+      <!-- External Links (Placed in a Separate Div) -->
+    <div>
+        <button onclick="window.open('https://www.linkedin.com/pulse/2024-github-program-languages-sebastian-martinez-8hjwe/?trackingId=FsjMPOncTE6adgRUKK%2B7%2Fg%3D%3D', '_blank')">Read Article on Programming Languages</button>
+        <button onclick="window.open('https://www.facebook.com/media/set/?set=a.169201694716201&type=3', '_blank')">Sector Technologies Group Portal</button>
+  </div>
 
-    <script>
-        function runCode() {
-            const htmlCode = document.getElementById("htmlCode").value;
-            const cssCode = document.getElementById("cssCode").value;
-            const jsCode = document.getElementById("jsCode").value;
-            const errorDisplay = document.getElementById("errorDisplay");
-            errorDisplay.textContent = ''; // Clear previous errors
-
-            // Validate HTML
-            const htmlErrors = HTMLHint.verify(htmlCode);
-            if (htmlErrors.length > 0) {
-                errorDisplay.textContent += "HTML Errors:\n" + htmlErrors.map(e => `${e.message} at line ${e.line}, column ${e.col}`).join('\n') + '\n\n';
-            }
-
-            // Validate CSS
-            const cssErrors = CSSLint.verify(cssCode).messages;
-            if (cssErrors.length > 0) {
-                errorDisplay.textContent += "CSS Errors:\n" + cssErrors.map(e => `${e.message} at line ${e.line || 0}`).join('\n') + '\n\n';
-            }
-
-            // Validate JavaScript
-            const jsErrors = window.eslint.verify(jsCode, { env: { browser: true, es6: true } });
-            if (jsErrors.length > 0) {
-                errorDisplay.textContent += "JavaScript Errors:\n" + jsErrors.map(e => `${e.message} at line ${e.line}, column ${e.column}`).join('\n') + '\n\n';
-            }
-
-            // Only run code if there are no errors
-            if (errorDisplay.textContent === '') {
-                const output = document.getElementById("output");
-                output.contentDocument.body.innerHTML = htmlCode;
-                const css = output.contentDocument.createElement('style');
-                css.textContent = cssCode;
-                output.contentDocument.head.appendChild(css);
-                
-                const script = output.contentDocument.createElement('script');
-                script.textContent = jsCode;
-                output.contentDocument.body.appendChild(script);
-            }
-        }
-
-        function clearEditors() {
-            document.getElementById("htmlCode").value = '';
-            document.getElementById("cssCode").value = '';
-            document.getElementById("jsCode").value = '';
-            document.getElementById("output").contentDocument.body.innerHTML = '';
-            document.getElementById("errorDisplay").textContent = '';
-        }
-    </script>
-
-</body>
+    <script src="script.js"></script>
+    </body>
 </html>
