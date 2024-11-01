@@ -718,7 +718,7 @@ const languages = [
     type: "High-level",
     companiesUsingIt: "Graphic designers, artists",
     idePrograms: "Processing IDE"
-}
+},
 {
     name: "PureScript",
     description: "A strongly typed, purely functional programming language that compiles to JavaScript, used for building reliable web applications.",
